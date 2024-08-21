@@ -39,11 +39,31 @@ This project emphasizes functionality over design, prioritizing a smooth, error-
 1. **Clone the repository**
    ```bash
    git clone https://github.com/yourusername/your-repository-name.git
+
 2. **Install dependencies**
    ```bash
    composer install
+
 3. **Setup the database**
-  - Create a new MySQL database and update the '.env' file with your database credentials
-  - Run the migrations to set up the database schema:
+   - Create a new MySQL database and update the '.env' file with your database credentials
+   - Run the migrations to set up the database schema:
    ```bash
    php bin/console doctrine:migrations:migrate
+
+4. **Run the server**
+   ```bash
+   php bin/console doctrine:migrations:migrate
+
+
+## Screenshots
+
+**Homepage**
+![test](https://tmssl.akamaized.net/images/foto/galerie/cristiano-ronaldo-al-nassr-2023-1690844161-112905.jpg?lm=1690844177)
+**Cart Functionality**
+**Payment Page**
+**Run the server**
+
+
+## Contributing
+
+We welcome contributions to improve this project. Please fork the repository, make your changes, and submit a pull request. Ensure your code follows the project’s style guidelines.
