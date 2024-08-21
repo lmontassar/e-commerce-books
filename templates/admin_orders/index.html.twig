@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+<style>
+    .PayD{
+        display: flex;
+        gap: 5px;
+        border: 1px solid #038903;
+        width: max-content;
+        padding: 2px 10px 0px 5px;
+        border-radius: 24px;
+        background: #00960038;
+        cursor:pointer;
+    }
+    .DO{
+        background: #4b54ff38;
+        border: 1px solid #0d2781fc;
+    }
+</style>
+<br>
+<h1>ALL THE ORDERS</h1>
+<a href="{{ path('app_admin_orders_export') }}"  class="btn btn-primary float-end">EXPORT TO EXCEL</a>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ID_CLIENT</th>
+                <th>FULLNAME</th>
+                <th>DATE</th>
+                <th>QTE_TOTAL</th>
+                <th>SUB_TOTAL</th>
+                <th>STATUS</th>
+                <th>PAYMENT</th>
+                <th><th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ord in orders %}
+            <tr>
+                <td>{{ord.com.id}}</td>
+                <td>{{ord.com.Client.id}}</td>
+                <td>{{ord.com.Client.nom | title}} {{ord.com.Client.prenom | title}}</td>
+                <td>{{ord.com.DateCommandeAt | date('d M, Y')}}</td>
+                <td>{{ord.arr.Qte}} </td>
+                <td>{{ord.arr.total}} TND</td>
+                <td>
+                    {% if ord.com.etat == 1 %}
+                        pending
+                    {% elseif ord.com.etat == 2 %}
+                        in progress
+                    {% elseif ord.com.etat == 3 %}
+                        complete
+                    {% endif %}
+                </td>
+                <td>
+                    
+                    {% if ord.com.isPayed %}
+                        <div class="PayD">
+                        {{ ux_icon('bi:currency-dollar',{color:'green',height: '20px', width: '20px'}) }} Paid 
+                    {% else %}
+                        <div class="PayD DO">
+                        {{ ux_icon('bi:house-check-fill',{color:'blue',height: '20px', width: '20px'}) }} Not Paid
+                    {% endif %}
+                    </div>
+                </td>
+                 <td>
+                    <a href="{{url('app_admin_commande',{'id':ord.com.id})}}">more details</a>
+                </td>
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

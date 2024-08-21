@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Money
+{% endblock %}
+
+{% block body %}
+
+    <br>
+    <h1>The Admin Dashboard</h1>
+
+    <ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{{url("app_dashboard")}}">Orders LineChart</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{url("app_dashboard_books")}}">Books</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link " href="{{url('app_dashboard_categorie')}}">Categories</a>
+    </li>
+    <li class="nav-item">
+          <a class="nav-link active" href="">Money</a>
+      </li>
+    </ul>
+
+
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart', 'bar']});
+      google.charts.setOnLoadCallback(drawDashboard);
+
+      function drawDashboard() {
+        drawRevenueChart();
+        drawTopProductsChart();
+      }
+
+      function drawRevenueChart() {
+        var data = google.visualization.arrayToDataTable({{monthData|raw }});
+
+       var options = {
+          title: 'Monthly Revenue',
+          hAxis: {title: 'Month'},
+          vAxis: {title: 'Revenue'},
+          legend: 'none'
+        };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('revenue_chart'));
+        chart.draw(data, options);
+      }
+
+      function drawTopProductsChart() {
+       var data = google.visualization.arrayToDataTable({{ top_books|raw }});
+
+        var options = {
+          title: 'Top 5 Selling books',
+          pieHole: 0.4
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('top_products_chart'));
+        chart.draw(data, options);
+      }
+    </script>
+    <style>
+
+      .chart-container {
+        margin-bottom: 30px;
+      }
+    </style>
+    <div class="container mt-5">
+
+    
+      <div class="row mt-5  mb-4">
+        <div class="col-md-6">
+          <div class="card text-white bg-primary mb-3">
+            <div class="card-header"> {{ ux_icon('bi:calendar2-date',{height: '20px', width: '20px'}) }} This Month</div>
+            <div class="card-body">
+              <h5 class="card-title">{{ totalmonth }} TND</h5>
+              <p class="card-text">Total revenue of this month.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card text-white bg-success mb-3">
+            <div class="card-header">{{ ux_icon('bi:graph-up',{height: '20px', width: '20px'}) }} All Time</div>
+            <div class="card-body">
+              <h5 class="card-title">{{ totalyear }} TND</h5>
+              <p class="card-text">Total revenue of all year.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 chart-container">
+          <div id="revenue_chart" style="width: 100%; height: 400px;"></div>
+        </div>
+        <div class="col-md-6 chart-container">
+          <div id="top_products_chart" style="width: 100%; height: 400px;"></div>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}

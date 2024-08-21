@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}Books{% endblock %}
+
+{% block body %}
+  <h1>Details of {{livre.isbn}}</h1>
+    
+   
+      
+ <div class="book-container">
+    <div class="book-cover">
+        <img src="{{livre.image}}" alt="Book Cover Image">
+    </div>
+    <div class="book-details">
+    
+        <h3>{{livre.titre | title   }}</h3>
+        <p class="price"><span>{{ livre.prix }} DT</span></p>
+        <p class="publisher">By {{ livre.editeur  | title }} a {{ livre.editedAt | date('d/m/Y h:i:s') }}</p>
+        <p class="description">{{livre.resume | nl2br}}</p>
+        <parent>
+        <a href="#" class="btn btn-primary">Buy Now</a>
+    </div>
+</div>
+
+<style>
+.book-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2rem;
+}
+
+.book-cover {
+  flex: 0 0 200px;
+  margin-right: 2rem;
+}
+
+.book-cover img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensures image fills container */
+}
+
+.book-details {
+  flex: 1;
+}
+
+.book-details h3 {
+  margin-bottom: 1rem;
+}
+
+.book-details a {
+  text-decoration: none;
+}
+
+.price,
+.publisher {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.description {
+  margin-bottom: 1rem;
+}
+</style>
+{% endblock %}

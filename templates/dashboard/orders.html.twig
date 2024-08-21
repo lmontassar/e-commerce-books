@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Orders LineChart{% endblock %}
+
+{% block body %}
+
+    <style>
+        h1{
+            font-weight:bold
+        }
+    </style>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <br>
+    <h1>The Admin Dashboard</h1>
+
+    <ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Orders LineChart</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{url("app_dashboard_books")}}">Books</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{url("app_dashboard_categorie")}}">Categories</a>
+    </li>
+    <li class="nav-item">
+          <a class="nav-link" href="{{url('app_dashboard_money')}}">Money</a>
+      </li>
+    </ul>
+    <div id="chart_div"></div>
+
+ <script>
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+            var list = {{ list|json_encode|raw }};
+            console.log(list);
+            var data = new google.visualization.DataTable();
+            data.addColumn('date', 'Time of Day');
+            data.addColumn('number', 'Orders');
+
+            list.forEach(element => {
+                data.addRows(
+                    [
+                    [new Date(element.year,element.month-1,(new Date()).getDate() ),element.orderCount],
+                    ]
+                    ) ;
+            });
+            var options = {
+                title: 'The number of orders in the last 12 months',
+
+                height: 500,
+                hAxis: {
+                    format: 'MMM yyy',
+                    gridlines: { count: 8 }
+                },
+                vAxis: {
+                    gridlines: { color: 'none' },
+                    minValue: 0
+                },
+            };
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+            var button = document.getElementById('change');
+            button.onclick = function () {
+                options.hAxis.format = 'MMM yyyy';
+                chart.draw(data, options);
+            };
+        }
+        
+    
+</script>
+{% endblock %}

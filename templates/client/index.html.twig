@@ -1,0 +1,255 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Home
+{% endblock %}
+
+{% block body %}
+
+	<link rel="stylesheet" href="{{asset('assets/css/liv_indx.css')}}">
+
+	<link rel="stylesheet" href="{{asset('assets/css/fontawesome.min.css')}}">
+	<script src="{{asset('assets/js/fontawesome.min.js')}}"></script>
+
+	<div class="notification-container"></div>
+
+        {% if categorie %}
+        <h4> 
+          <a href="{{url('app_client')}}">Filter > categorie > </a>{{categorie.libelle}}
+        </h4>
+        {% endif %}
+
+		<h1>Books</h1>
+        
+
+<div class="container">
+        
+        <div class="row">
+            <aside class="col-md-3">
+                <div class="card">
+                    <article class="filter-group">
+                    <div class="filter-content collapse show" id="collapse_1" style="">
+                        <div class="card-header">
+                            <form class="pb-3">
+                                <div class="input-group">
+                                    <input id="search" type="text" class="form-control" placeholder="Search">
+                                    <div onclick="search()" class="input-group-append">
+                                        <button class="btn btn-light" type="button"> {{ ux_icon('bi:search',{height: '20px', width: '20px'}) }}</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        
+                            <div class="card-body">
+                                
+
+                                <ul class="list-menu">
+                                    {% for cat in categories %}
+                                        <li><a href="{{url('app_client_cat',{"id":cat.id})}}">{{cat.libelle}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div> <!-- card-body.// -->
+                        </div>
+                    </article> <!-- filter-group  .// -->
+                    <hr>
+                      
+                    <article class="filter-group">
+                        <header class="card-header">
+                            <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+                               
+                                <h6 class="title">Price range </h6>
+                            </a>
+                        </header>
+                        <div class="filter-content collapse show" id="collapse_3" style="">
+                            <div class="card-body">
+                                
+                                <div class="form-row">
+                                    <div class="form-group ">
+                                        <label>Min</label>
+                                        <input id="min" class="form-control" placeholder="0TND" type="number">
+                                    </div>
+                                    <div class="form-group text-right">
+                                        <label>Max</label>
+                                        <input id="max" class="form-control" placeholder="1000TND" type="number">
+                                    </div>
+                                </div> <!-- form-row.// -->
+                                <button class="btn btn-block btn-primary" onclick="applyFilter()">Apply</button>
+                            </div><!-- card-body.// -->
+                        </div>
+                    </article> <!-- filter-group .// -->
+                </div> <!-- card.// -->
+            </aside>
+            <main class="col-md-9">
+
+
+
+			<div class="row">
+				{% for livre in livres %}
+						<div class="col-md-3">
+								<div class="wsk-cp-product">
+									<a href="{{url('app_client_livre',{'id':livre.id})}}">
+										<div class="wsk-cp-img">
+											<img src="{{livre.image}}" alt="Product" class="img-responsive"/>
+										</div>
+									
+										<div class="wsk-cp-text">
+											<a href="{{url('app_client_livre',{'id':livre.id})}}">
+												<div class="category">
+													<span>{{livre.titre}}</span>
+												</div>
+												<div class="title-product">
+													<h3>{{livre.titre}}</h3>
+												</div>
+												<div class="description-prod">
+													<p>{{livre.resume}}</p>
+												</div>
+											</a>	
+											<div class="card-footer">
+												<div class="wcf-left">
+													<span class="price">{{livre.prix}}
+														DT</span>
+												</div>
+												<div class="wcf-right buy-btn add-to-cart" data-id="{{ livre.id }}">
+
+													Ajouter {{ ux_icon('bi:bag',{height: '20px', width: '20px'}) }}
+
+												</div>
+											</div>
+										</div>
+
+								</div>
+						</div>
+				{% endfor %}
+			</div>
+            {{ knp_pagination_render(livres,'client/pagination_template.html.twig') }}
+
+            </main>
+        </div>
+    </div>
+
+	
+
+<script>
+/*  
+Filtre Script -----------
+*/
+
+function search(){
+    text = document.getElementById('search').value ;
+    if(text != ""){
+        var url = "{{url('app_client')}}"+"search/"+text ;
+        window.location.href = url;
+    }
+}
+function applyFilter() {
+    var min =  document.getElementById('min').value || 0;
+    var max = document.getElementById('max').value || 0;
+
+    min = Number(min);
+    max = Number(max);
+    if(min > max){
+        var m = min ;
+        min = max;
+        max = m;
+    }
+    var url = "{{url('app_client')}}" + min + '/' + max;
+    window.location.href = url;
+}
+/*
+end of Filtre Script ---------
+*/
+
+
+	var btns = document.querySelectorAll('.buy-btn');
+	btns.forEach(function (button) {
+		button.addEventListener('click', function (event) {
+			console.log("hello");
+		var id = this.getAttribute('data-id');
+
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', '{{ path("app_add_panier", {"id": "RID"}) }}'.replace('RID', id), true);
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState == XMLHttpRequest.DONE) {
+                    var response = JSON.parse(xhr.responseText);
+					console.log(response);
+                    var statuss = response.statuss
+					var notificationData = null;
+					if(statuss == true){
+						notificationData = [
+									{ 
+										title: "Your article is added to car", 
+										body: "to change the quantity or finish the command. go to your cart",
+										imgUrl: "{{asset('assets/image/cart.jpg')}}"  // Specific image URL for the first notification
+									}
+								];
+					} else {
+						notificationData = [
+									{ 
+										title: "Article is already added", 
+										body: "Please if you need to add more quantity go to your cart",
+										imgUrl: "{{asset('assets/image/cart.jpg')}}"  // Specific image URL for the first notification
+									}
+								];
+					}
+
+					notificationData.forEach((data, index) => {
+						setTimeout(() => {
+						createNotification(data.title, data.body, data.imgUrl);
+					}, 0); // Increase delay for each notification
+					});
+			}
+		};
+		xhr.send();
+		});
+	});
+
+function createNotification(title, body, imgUrl) {
+    const container = document.querySelector('.notification-container');
+    const notification = document.createElement('div');
+    notification.className = 'notification hidden'; // Start hidden to manage transition
+    notification.innerHTML = `
+        <div class="innernoti">
+            <img src="${imgUrl}" alt="Icon" class="notification-icon">
+            <div class="text-content">
+                <div class="notification-header">
+                    <span class="notification-title">${title}</span>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="notification-body">${body}</div>
+            </div>
+        </div>
+    `;
+
+    // Insert the new notification at the top of the container
+    container.prepend(notification); // Ensures new notifications are added at the top
+
+    // Show notification with a delay to allow CSS transition
+    setTimeout(() => {
+        notification.classList.remove('hidden');
+    }, 100);
+
+    // Set auto-hide with cleanup
+    setTimeout(() => {
+        notification.classList.add('hidden');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 500); // Ensure smooth fading before removal
+    }, 5000);
+
+    // Close button functionality
+    notification.querySelector('.close-btn').addEventListener('click', () => {
+        notification.classList.add('hidden');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 500); // Remove from DOM after transition
+    });
+}
+
+
+
+</script>
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <style>
+        a{
+            text-decoration:none;
+            color:black;
+        }
+        h1 {
+            margin: 50px 0;
+            font-weight: 500;
+            font-family: cursive;
+        }
+        .histord {
+            display: grid;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom:20px;
+        }
+        .rowr {
+            display: flex;
+            justify-content: space-between ;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px -2px;
+            padding: 20px;
+            gap: 20px;
+            cursor: pointer;
+            min-width: 800px;
+            max-width: 90%;
+        }
+        .imgr {
+            width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .imgr img {
+            width: 80px;
+        }
+        .d-info {
+            width: calc(100% + 120px);
+            display: flex;
+            justify-content: space-between;
+        }
+        .div1,
+        .div2 {
+            display: grid;
+            align-content: space-between;
+        }
+        .idr {
+            font-size: 20px;
+            font-weight: 700;
+            
+
+        }
+        .countr {
+            font-size: 16px;
+            font-family: sans-serif;
+        }
+        .totalr {
+            font-size: 16px;
+            font-weight: 600;
+            font-family: sans-serif;
+        }
+        .etatr {
+            font-weight: 600;
+            font-size: 16px;
+            color: #101765;
+        }
+        .dater {
+            font-weight: 700;
+            font-size: 16px;
+            color: #101765;
+        }
+
+    </style>
+    <h1>Your orders</h1>
+    <div class="histord">
+        {% for order in orders %}
+        <a href="{{url('app_commande',{'id':order['com'].id})}}">
+            <div class="rowr">
+                <div class="imgr">
+                    <img src="{{asset('assets/image/cart.jpg')}}">
+                </div>
+                <div class="d-info">
+                    <div class="div1">
+                        <span class="idr">#ORDER-ID: {{order['com'].id}}</span>
+                        <span class="countr">{{order['arr']['Qte']}}x Books </span>
+                        <span class="totalr">Total: {{order['arr']['total']}}TND</span>
+                    </div>
+                    <div class="div2">
+                        <span class="dater">{{ order['com'].DateCommandeAt | date('d/m/Y') }}</span>
+                        <span class="etatr">
+                                {% if order['com'].etat == 1 %}
+                                    en attente
+                                {% elseif order['com'].etat == 2 %}
+                                    en cours
+                                {% else %}
+                                    complétées
+                                {% endif %}
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+
+
+
+
+
+{% endblock %}

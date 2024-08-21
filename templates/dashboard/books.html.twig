@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Books
+{% endblock %}
+
+{% block body %}
+
+    <style>
+        h1{
+            font-weight:bold
+        }
+        {# .c{
+            height: 60vh;
+            overflow: overlay;
+        } #}
+
+    </style>
+    <br>
+    <h1>The Admin Dashboard</h1>
+    <ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{{url("app_dashboard")}}">Orders LineChart</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="#">Books</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{url("app_dashboard_categorie")}}">Categories</a>
+    </li>
+    <li class="nav-item">
+          <a class="nav-link" href="{{url('app_dashboard_money')}}">Money</a>
+      </li>
+    </ul>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <div id="chart_div" style="width: 100%; height: {{count*20}}px;"></div>
+  <script>
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawBasic);
+
+    function drawBasic() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Book', 'quantity of sales',]
+            {% for l in list %}
+                ,[ "{{l.titre}}",{{l.qte_vente}}]
+            {% endfor %}
+
+        ]);
+
+
+
+        var options = {
+            title: 'Charting the Bestsellers: A chartline of Book Sales',
+            
+           chartArea: {width: '100%'},
+            hAxis: {
+            title: 'Top Book Sales',
+            minValue: 0
+            },
+            vAxis: {
+            title: 'Book'
+            }
+        };
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+
+  </script>
+
+{% endblock %}

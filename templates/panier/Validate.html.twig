@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+    
+    <style>
+        form {
+            width: 90%;
+            max-width: 600px;
+            min-width: 300px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 1px 1px 9px -3px gray;
+            padding: 53px 25px;
+            margin-bottom: 50px;
+        }
+        .b1 {
+            margin-top: 15px;
+            width: 100%;
+        }
+
+</style>
+
+    {{ form_start(form) }}
+        <h1>Check your order information</h1>
+        {{ form_row(form.email) }}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.prenom) }}
+        {{ form_row(form.Numtel) }}
+        {{ form_row(form.Adresse) }}
+
+        <button type="submit" class="btn btn-primary b1">FINISH</button>
+    {{ form_end(form) }}
+
+{% endblock %}

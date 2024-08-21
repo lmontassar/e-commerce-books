@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+
+
+{% block body %}
+<style>
+form {
+    width: 90%;
+    max-width: 600px;
+    min-width: 300px;
+    margin: auto;
+    position: absolute;
+    /* top: -21%; */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: 1px 1px 9px -3px gray;
+    padding: 53px 25px;
+}
+
+.b1 {
+    margin-top: 15px;
+    width: 100%;
+}
+</style>
+    
+
+    {{ form_start(resetForm) }}
+        <h1>Reset your password</h1>
+        {{ form_row(resetForm.plainPassword) }}
+        <button class="btn btn-primary b1">Reset password</button>
+    {{ form_end(resetForm) }}
+
+{% endblock %}

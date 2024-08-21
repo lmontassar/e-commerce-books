@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+    <h1>List of categories</h1>
+    <a href="{{ path('app_categorie_auto_new') }}"  class="btn btn-primary float-end">Ajouter une categorie</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>Slug</th>
+                <th>Description</th>
+                <th></th>
+                <th>actions</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.libelle }}</td>
+                <td>{{ category.slug }}</td>
+                <td>{{ category.description }}</td>
+                <td>
+                    <a href="{{ path('app_categorie_auto_show', {'id': category.id}) }}" class="btn btn-info">Afficher</a>
+                    </td> <td>
+                    <a href="{{ path('app_categorie_auto_edit', {'id': category.id}) }}" class="btn btn-primary">modifier</a>
+                    </td> <td>
+                    <a href="{{url('app_categorie_auto_delete', {'id': category.id}) }}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

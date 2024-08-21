@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Categories
+{% endblock %}
+
+{% block body %}
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Categorie', 'Qte seles'],
+          {% for c in cat %}
+            [ "{{c.Categorie}}",   {{c.QuantiteVendue}}],
+          {% endfor %}
+        ]);
+
+        var options = {
+          title: 'Statistics of Book Sales by Category'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+     <style>
+        h1{
+            font-weight:bold
+        }
+        {# .c{
+            height: 60vh;
+            overflow: overlay;
+        } #}
+
+    </style>
+    <br>
+    <h1>The Admin Dashboard</h1>
+
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{{url("app_dashboard")}}">Orders LineChart</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{{url("app_dashboard_books")}}">Books</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link  active" href="">Categories</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{{url('app_dashboard_money')}}">Money</a>
+      </li>
+    </ul>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+
+{% endblock %}

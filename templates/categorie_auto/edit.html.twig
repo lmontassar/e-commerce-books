@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Categories{% endblock %}
+
+{% block body %}
+    <h1>Edit Categories</h1>
+
+    {{ include('categorie_auto/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_categorie_auto_index') }}" class="btn btn-info" > back to list</a>
+
+{% endblock %}

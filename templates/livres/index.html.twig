@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+ Books
+{% endblock %}
+
+{% block body %}
+	<h1>List of books</h1>
+	<a href="{{url('app_livres_add')}}" class="btn btn-primary float-end">Ajouter un nouveau livre</a>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Titre</th>
+				<th>ISBN</th>
+				<th>Category</th>
+				<th>Editer</th>
+				<th>Edited Date</th>
+				<th>Price</th>
+				<th colspan="3">...</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for var in livres %}
+				<tr>
+					<td>{{var.titre | title   }}</td>
+					<td>{{var.ISBN | title   }}</td>
+					<td>{{var.categorie.libelle ?? ' '  }}</td>
+					<td>{{var.editeur | title   }}</td>
+					<td>{{var.editedAt | date('d/m/Y h:i:s')   }}</td>
+					<td>{{var.prix  }}</td>
+					<td>
+						<a href="{{url('app_livre',{'id':var.id})}}">
+							<button type="button" class="btn btn-info">More..</button>
+						</a>
+					</td>
+					<td>
+						<a href="{{url('app_livres_edit',{'id':var.id})}}">
+							<button type="button" class="btn btn-primary">Edit</button>
+						</a>
+					</td>
+					<td>
+						<a href="{{url('app_delete_livre' , {'id':var.id})}}">
+							<button type="button" class="btn btn-danger">Delete</button>
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+  
+{% endblock %}

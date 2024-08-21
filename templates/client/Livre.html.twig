@@ -1,0 +1,433 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{livre.titre}}
+{% endblock %}
+{% block body %}
+
+	<style>
+		.infor {
+			display: grid;
+			gap: 6px;
+			margin: 20px 0;
+		}
+		.bo {
+			font-weight: 700;
+			font-size: 16px;
+		}
+	</style>
+	<link rel="stylesheet" href="{{asset('assets/css/livre.css')}}">
+  <style>
+  		body {
+			font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			overflow-x: hidden;
+		}
+
+		.notification-container {
+			display: flex;
+			flex-direction: column;
+			position: fixed;
+			bottom: 40px;
+			right: 20px;
+			width: 350px;
+			z-index: 9;
+		}
+
+
+		.notification {
+			width: 100%;
+			border: 1px solid #ccc;
+			border-radius: 8px;
+			box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+			background-color: #fff;
+			margin-bottom: 15px; /* Space between notifications */
+			transform: translateX(100%);
+			transition: transform 0.5s ease-out, 0.5s ease-out;
+			display: flex;
+			align-items: center;
+
+		}
+		.notification.hidden {
+			transform: translateX(100%);
+		}
+		.notification:not(.hidden) {
+
+			transform: translateX(0);
+		}
+		.innernoti {
+			padding: 10px;
+			background-color: #f0f0f0;
+			display: flex;
+			align-items: center;
+			width: 100%;
+			border-radius: 7px;
+		}
+		.notification-icon {
+			width: 40px;
+			height: 40px;
+			margin-right: 15px;
+		}
+		.text-content {
+			flex-grow: 1;
+		}
+		.notification-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+		}
+		.notification-title {
+			font-weight: bold;
+		}
+
+		.close-btn {
+			cursor: pointer;
+			border: none;
+			background-color: transparent;
+			font-size: 1.2rem;
+		}
+  </style>
+      <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .filter-sidebar {
+            width: 250px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+
+        .filter-category h2,
+        .filter-options h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .filter-category ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .filter-category ul li {
+            margin: 5px 0;
+        }
+
+        .filter-options {
+            margin-top: 20px;
+        }
+
+        .filter-options label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        .price-slider {
+            margin: 10px 0;
+        }
+
+        .price-slider input[type="range"] {
+            width: 100%;
+            margin: 5px 0;
+        }
+
+        .price-values {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        @media (max-width: 768px) {
+            .filter-sidebar {
+                width: 100%;
+            }
+        }
+
+        .icon-control {
+            margin-top: 5px;
+            float: right;
+            font-size: 80%;
+        }
+
+
+
+        .btn-light {
+            background-color: #fff;
+            border-color: #e4e4e4;
+        }
+
+        .list-menu {
+            list-style: none;
+            margin: 0;
+            padding-left: 0;
+        }
+
+        .list-menu a {
+            color: #343a40;
+        }
+
+        .card-product-grid .info-wrap {
+            overflow: hidden;
+            padding: 18px 20px;
+        }
+
+        [class*='card-product'] a.title {
+            color: #212529;
+            display: block;
+        }
+
+        .card-product-grid:hover .btn-overlay {
+            opacity: 1;
+        }
+
+        .card-product-grid .btn-overlay {
+            -webkit-transition: .5s;
+            transition: .5s;
+            opacity: 0;
+            left: 0;
+            bottom: 0;
+            color: #fff;
+            width: 100%;
+            padding: 5px 0;
+            text-align: center;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .img-wrap {
+            overflow: hidden;
+            position: relative;
+        }
+    </style>
+	<div class="notification-container"></div>
+
+	<section aria-label="Main content" role="main" class="product-detail">
+		<div itemscope itemtype="http://schema.org/Product">
+			<meta itemprop="url" content="http://html-koder-test.myshopify.com/products/tommy-hilfiger-t-shirt-new-york">
+			<meta itemprop="image" content="//cdn.shopify.com/s/files/1/1047/6452/products/product_grande.png?v=1446769025">
+			<div class="">
+				<div class="_cont detail-top">
+					<div class="cols">
+						<div class="left-col">
+							<div class="big">
+								<span id="big-image" class="img" quickbeam="image" style="background-image: url('{{livre.image}}')"></span>
+
+							</div>
+						</div>
+						<div class="right-col">
+							<h1 itemprop="name">{{livre.titre}}</h1>
+							<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+								<meta itemprop="priceCurrency" content="USD">
+								<link itemprop="availability" href="http://schema.org/InStock">
+								<div class="price-shipping">
+									<div class="price" id="price-preview" quickbeam="price" quickbeam-price="800">
+										{{livre.prix}}
+										TND
+									</div>
+								</div>
+								<div class="infor">
+									<div class="categorie">
+										<span class="bo">Category:
+										</span>
+										{{livre.categorie.libelle}}
+									</div>
+									<div class="slug">
+										<span class="bo">SLUG:
+										</span>
+										{{livre.slug}}
+									</div>
+									<div class="isbn">
+										<span class="bo">ISBN:
+										</span>
+										{{livre.isbn}}
+									</div>
+									<div class="editeur">
+										<span class="bo">Editer:
+										</span>
+										{{livre.editeur}}
+									</div>
+									<div class="edited_at">
+										<span class="bo">Created at:
+										</span>
+										{{livre.editedAt | date('d M, Y')}}
+									</div>
+									<div class="auteur">
+										<span class="bo">Author:
+										</span>
+										{{livre.auteur}}
+									</div>
+								</div>
+								<div class="btn-and-quantity-wrap">
+									<div class="btn-and-quantity">
+										<div class="spinner">
+											<span class="btn minus" data-id="2721888517"></span>
+											<input type="text" id="Qte2" name="quantity" value="1" class="quantity-selector">
+											<input type="hidden" id="product_id" name="product_id" value="2721888517">
+											<span class="q">Qty.</span>
+											<span class="btn plus" data-id="2721888517"></span>
+										</div>
+										<div id="AddToCart" data-id="{{livre.id}}" quickbeam="add-to-cart">
+											<span  id="AddToCartText">Add to Cart</span>
+										</div>
+									</div>
+								</div>
+							</form>
+							<div class="tabs">
+								<div class="tab-labels">
+									<span data-id="1" class="active">Description</span>
+								</div>
+								<div class="tab-slides">
+									<div id="tab-slide-1" itemprop="description" class="slide active">
+										{{livre.resume}}
+									</div>
+									<div id="tab-slide-2" class="slide">
+										Tony Hunfinger
+									</div>
+								</div>
+							</div>
+							<div class="social-sharing-btn-wrapper">
+								<span id="social_sharing_btn">Share</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<aside class="related">
+			<div class="_cont">
+				<h2>More books with the Same Category</h2>
+				<div class="collection-list cols-4" id="collection-list" data-products-per-page="4">
+					{% for livre in livres %}
+						<a class="product-box" href="{{url('app_client_livre',{'id':livre.id})}}">
+							<span class="img">
+								<span style="background-image: url('{{livre.image}}')" class="i first"></span>
+								<span class="i second" style="background-image: url('//cdn.shopify.com/s/files/1/1047/6452/products/tricko3_fd08d231-654c-4304-81b2-9191e6fd141e_grande.jpg?v=1447530674')"></span>
+							</span>
+							<span class="text">
+								<strong>{{livre.titre}}</strong>
+								<span>
+									From {{livre.prix}}-TND
+								</span>
+								<div class="variants">
+									<div class="variant">
+										<div class="var m available">
+											<div class="t">{{livre.editedAt | date('d M,Y')}}</div>
+										</div>
+										
+									</div>
+								</div>
+							</span>
+						</a>
+					{% endfor %}
+
+
+				</div>
+        <a href="{{url('app_client')}}">
+          <div class="more-products" id="more-products-wrap">
+            <span id="more-products" data-rows_per_page="1">More products</span>
+          </div>
+        <a>
+			</div>
+		</aside>
+	</div>
+
+</section>
+
+<script>
+document.getElementById('AddToCart').addEventListener('click', function (event) {
+			console.log("hello");
+		  var id = this.getAttribute('data-id');
+      var qte = document.getElementById('Qte2').value ;
+
+      var xhr = new XMLHttpRequest();
+	  xhr.open("POST","{{ path('app_add_panier_qte', {'id': 'RID','Qte':'QTE'} ) }}".replace('RID', id).replace('QTE', qte),true)
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+                      var response = JSON.parse(xhr.responseText);
+            console.log(response);
+                      var statuss = response.statuss
+            var notificationData = null;
+            if(statuss == true){
+              notificationData = [
+                    { 
+                      title: "Your article is added to car", 
+                      body: "to change the quantity or finish the command. go to your cart",
+                      imgUrl: "{{asset('assets/image/cart.jpg')}}"
+                    }
+                  ];
+            } else {
+              notificationData = [
+                    { 
+                      title: "Article is already added", 
+                      body: "Please if you need to add more quantity go to your cart",
+                      imgUrl: "{{asset('assets/image/cart.jpg')}}" 
+                    }
+                  ];
+            }
+
+            notificationData.forEach((data, index) => {
+              setTimeout(() => {
+              createNotification(data.title, data.body, data.imgUrl);
+            }, 0);
+            });
+        }
+      };
+      xhr.send();
+    });
+
+	
+function createNotification(title, body, imgUrl) {
+    const container = document.querySelector('.notification-container');
+    const notification = document.createElement('div');
+    notification.className = 'notification hidden';
+    notification.innerHTML = `
+        <div class="innernoti">
+            <img src="${imgUrl}" alt="Icon" class="notification-icon">
+            <div class="text-content">
+                <div class="notification-header">
+                    <span class="notification-title">${title}</span>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="notification-body">${body}</div>
+            </div>
+        </div>
+    `;
+
+
+    container.prepend(notification); 
+
+    setTimeout(() => {
+        notification.classList.remove('hidden');
+    }, 100);
+
+    setTimeout(() => {
+        notification.classList.add('hidden');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 500);
+    }, 5000);
+
+    notification.querySelector('.close-btn').addEventListener('click', () => {
+        notification.classList.add('hidden');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 500);
+    });
+}
+
+</script>
+
+<!-- Quickbeam cart-->
+
+
+<script src="{{asset('assets/js/livre.js')}}"></script>
+
+
+{% endblock %}
