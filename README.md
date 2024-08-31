@@ -74,8 +74,7 @@ This project emphasizes functionality over design, prioritizing a smooth, error-
 
 
 **Cart and Payment Functionality**
-![Home page]()
-[Watch the video](https://github.com/lmontassar/e-commerce-books/blob/main/images/cart_and_payment.mp4)
+[Watch the video](https://drive.google.com/file/d/1YiXPonSj9oH_i4VkGlhEG8q5VNlJ3JgY/view?usp=sharing)
 
 
 **Run the server**
