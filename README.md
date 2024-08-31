@@ -38,7 +38,7 @@ This project emphasizes functionality over design, prioritizing a smooth, error-
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/your-repository-name.git
+   git clone https://github.com/lmontassar/e-commerce-books
 
 2. **Install dependencies**
    ```bash
