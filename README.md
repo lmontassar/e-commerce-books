@@ -74,12 +74,27 @@ This project emphasizes functionality over design, prioritizing a smooth, error-
 
 
 **Cart and Payment Functionality**
+
 https://github.com/user-attachments/assets/d323358f-46c7-43f7-8384-a1a6d7af9a71
+## Description
+
 
 
 **Article Video**
-[Watch the video](https://github.com/user-attachments/assets/96729bd0-e954-4736-8739-d1749e36e4b5)
+
+https://github.com/user-attachments/assets/96729bd0-e954-4736-8739-d1749e36e4b5
+## Description
+
+
 
 **Admin part**
-[Watch the video](https://github.com/user-attachments/assets/eaf6f87e-53c7-4053-b9fd-8d3923bd1cf4)
+
+https://github.com/user-attachments/assets/eaf6f87e-53c7-4053-b9fd-8d3923bd1cf4
+## Description
+
+
+
+
+
+
 
