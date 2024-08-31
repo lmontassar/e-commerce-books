@@ -73,25 +73,29 @@ This project emphasizes functionality over design, prioritizing a smooth, error-
 ![Home page](https://github.com/lmontassar/e-commerce-books/blob/main/images/home2.PNG)
 
 
-**Cart and Payment Functionality**
+## Cart and Payment Functionality
+This video demonstrates the cart and payment functionality within the application. reviewing the cart contents, and completing the payment process. Additionally, it shows how users can access their payment history, ensuring transparency and ease of tracking previous transactions.
 
 https://github.com/user-attachments/assets/d323358f-46c7-43f7-8384-a1a6d7af9a71
-## Description
 
 
 
-**Article Video**
+
+## Article Video
+This video provides an overview of the article page functionality, detailing how users can navigate through articles, add books to their cart directly from the article page, and continue with the purchasing process. It highlights the seamless integration between content exploration and e-commerce features.
 
 https://github.com/user-attachments/assets/96729bd0-e954-4736-8739-d1749e36e4b5
-## Description
 
 
 
-**Admin part**
+## Admin part
+In this video, the admin panel's comprehensive functionality is showcased. It includes all the CRUD operations necessary for managing the platform's content, users, and orders. Additionally, it demonstrates how the admin can utilize Google Charts for statistical analysis and generate reports in Excel format to explain and analyze key metrics effectively.
 
 https://github.com/user-attachments/assets/eaf6f87e-53c7-4053-b9fd-8d3923bd1cf4
-## Description
 
+
+
+#Thank you for your attention, and I hope this project serves as a valuable resource for others.
 
 
 
