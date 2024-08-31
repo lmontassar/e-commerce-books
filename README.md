@@ -58,7 +58,7 @@ This project emphasizes functionality over design, prioritizing a smooth, error-
 ## Screenshots
 
 **Homepage**
-![test](https://tmssl.akamaized.net/images/foto/galerie/cristiano-ronaldo-al-nassr-2023-1690844161-112905.jpg?lm=1690844177)
+![test]()
 **Cart Functionality**
 **Payment Page**
 **Run the server**
