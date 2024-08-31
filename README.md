@@ -57,10 +57,16 @@ This project emphasizes functionality over design, prioritizing a smooth, error-
 
 ## Screenshots
 
-**Homepage**
-![test]()
+**Login**
+![login page](https://github.com/lmontassar/e-commerce-books/blob/main/images/login.PNG)
+
+**Sign up**
+![login page](https://github.com/lmontassar/e-commerce-books/blob/main/images/sign_up.PNG)
+
 **Cart Functionality**
+
 **Payment Page**
+
 **Run the server**
 
 
