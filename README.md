@@ -60,12 +60,35 @@ This project emphasizes functionality over design, prioritizing a smooth, error-
 **Login**
 ![login page](https://github.com/lmontassar/e-commerce-books/blob/main/images/login.PNG)
 
+
+**Sign up**
+![signup page](https://github.com/lmontassar/e-commerce-books/blob/main/images/sign_up.PNG)
+
+
+**Home page 1**
+![Home page](https://github.com/lmontassar/e-commerce-books/blob/main/images/home1.PNG)
+
+
+**Home page 2**
+![Home page](https://github.com/lmontassar/e-commerce-books/blob/main/images/home2.PNG)
+
+
 **Sign up**
 ![login page](https://github.com/lmontassar/e-commerce-books/blob/main/images/sign_up.PNG)
 
-**Cart Functionality**
 
-**Payment Page**
+**Sign up**
+![login page](https://github.com/lmontassar/e-commerce-books/blob/main/images/sign_up.PNG)
+
+
+**Sign up**
+![login page](https://github.com/lmontassar/e-commerce-books/blob/main/images/sign_up.PNG)
+
+**Cart and Payment Functionality**
+![login page](https://github.com/lmontassar/e-commerce-books/blob/main/images/cart_and_payment.mp4)
+
+
+**t Page**
 
 **Run the server**
 
