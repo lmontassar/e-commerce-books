@@ -74,12 +74,9 @@ This project emphasizes functionality over design, prioritizing a smooth, error-
 
 
 **Cart and Payment Functionality**
-![Home page](https://github.com/lmontassar/e-commerce-books/blob/main/images/cart_and_payment.mp4)
+![Home page]()
+[Watch the video](https://github.com/lmontassar/e-commerce-books/blob/main/images/cart_and_payment.mp4)
 
-<video width="320" height="240" controls>
-  <source src="https://github.com/lmontassar/e-commerce-books/blob/main/images/cart_and_payment.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
 
 **Run the server**
 
