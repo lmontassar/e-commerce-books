@@ -29,6 +29,7 @@ Welcome to the **Online Bookstore E-Commerce Platform**. This project is a funct
 - **Database:** MySQL
 - **Payment Gateway:** Stripe
 - **Charts & Analytics:** Google Charts
+- **Mailer:** google-mailer
 
 ## Focus & Approach
 
