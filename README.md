@@ -1,4 +1,4 @@
-# Online Bookstore E-Commerce Platform
+# Online Bookstore E-Commerce Platform (symfony 7)
 
 Welcome to the **Online Bookstore E-Commerce Platform**. This project is a functional and reliable solution for buying books online, developed with a focus on robust logic and technology integration. Built with Symfony and powered by MySQL, this platform was designed to operate flawlessly, ensuring a smooth user experience with no errors. This project was completed in just 18 hours of intense work.
 
